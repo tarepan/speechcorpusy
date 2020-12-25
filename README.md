@@ -19,12 +19,11 @@ With these two functionality, you can **focus on corpus-specific implementations
 ```
 
 ## APIs
-- [AbstractCorpus](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py)
+- [corpuspy.interface.AbstractCorpus](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py): the interface
 - utilities
-  - Corpus data get (local/S3/GDrive etc)
-  - Private corpus mirror
-  - Local corpus data directory handling
-
+  - [corpuspy.helper.contents.get_contents](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
+  - [corpuspy.helper.forward.forward_from_GDrive](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/forward.py) Forward from GoogleDrive to any adress for corpus copy
+ 
 ## Project's Territory/Responsibility
 ```
      Corpus ------------- Dataset ------------- Loader/Batcher  
