@@ -1,0 +1,2 @@
+# corpuspy
+Python corpus infrastructure
