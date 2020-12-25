@@ -19,7 +19,9 @@ With these two functionality, you can **focus on corpus-specific implementations
 ```
 
 ## APIs
-  Corpus data get (local/S3/GDrive etc)
+- [AbstractCorpus](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py)
+- utilities
+  - Corpus data get (local/S3/GDrive etc)
   - Private corpus mirror
   - Local corpus data directory handling
 
