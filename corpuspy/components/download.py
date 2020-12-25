@@ -1,15 +1,14 @@
 from pathlib import Path
-from tempfile import NamedTemporaryFile
 from typing import Optional
 
-import fsspec
 from tqdm import tqdm
 import requests
 
-def get_GDrive_large_contents(id: str, path_archive_local: Path, total_size_GB: float) -> None:
-    """
-    Get large contents in Google Drive.
-    Large contents needs special handling for virus check procedure.
+
+def download_GDrive_large_contents(id: str, path_archive_local: Path, total_size_GB: float) -> None:
+    """Download large contents in Google Drive.
+
+    Large contents in Google Drive needs special handling for virus check procedure.
     This utility wrap the procedure.
 
     Args:
@@ -43,16 +42,5 @@ def get_GDrive_large_contents(id: str, path_archive_local: Path, total_size_GB: 
         pbar.close()
 
 
-def forward_file_from_GDrive(id_gdrive_contents: str, forward_to: str, size_GB: float) -> None:
-    forward_to = f"simplecache::{forward_to}"
-    with NamedTemporaryFile("w+b") as tmp:
-        get_GDrive_large_contents(id_gdrive_contents, Path(tmp.name), size_GB)
-        tmp.seek(0)
-        print("Writing to the adress...")
-        with fsspec.open(forward_to, "wb") as archive:
-            archive.write(tmp.read())
-        print("Written.")
-
-
 if __name__ == "__main__":
-    get_GDrive_large_contents("1NyiZCXkYTdYBNtD1B-IMAYCVa-0SQsKX", Path("./jsss_auto.zip"))
+    download_GDrive_large_contents("1NyiZCXkYTdYBNtD1B-IMAYCVa-0SQsKX", Path("./jsss_auto.zip"), 1.09)

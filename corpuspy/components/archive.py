@@ -63,13 +63,14 @@ def save_archive(path_contents: Path, adress_archive: str) -> None:
         adress_archive: Saved adress.
     """
 
+    # TempDir for garbage-less upload
     with TemporaryDirectory() as tmpdir:
         # zip with deflate compression
         make_archive(f"{tmpdir}/tmp", "zip", root_dir=path_contents)
         # write (==upload) the archive
-        with fsspec.open(f"simplecache::{adress_archive}", "wb") as target:
+        with fsspec.open(f"simplecache::{adress_archive}", "wb") as destination:
             with open(f"{tmpdir}/tmp.zip", "rb") as archive:
-                target.write(archive.read())
+                destination.write(archive.read())
 
 
 def hash_args(*args) -> str:
