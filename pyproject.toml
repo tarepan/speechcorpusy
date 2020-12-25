@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "corpuspy"
 version = "0.0.1"
-description = "corpuspy - Python corpus infrastructure
+description = "corpuspy - Python corpus infrastructure"
 authors = ["Tarepan"]
 license = "MIT"
 readme = "README.md"
