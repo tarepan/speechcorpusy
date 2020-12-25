@@ -19,10 +19,10 @@ With these two functionality, you can **focus on corpus-specific implementations
 ```
 
 ## APIs
-- [corpuspy.interface.AbstractCorpus](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py): the interface
+- [`corpuspy.interface.AbstractCorpus`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py): the interface
 - utilities
-  - [corpuspy.helper.contents.get_contents](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
-  - [corpuspy.helper.forward.forward_from_GDrive](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/forward.py) Forward from GoogleDrive to any adress for corpus copy
+  - [`corpuspy.helper.contents.get_contents`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
+  - [`corpuspy.helper.forward.forward_from_GDrive`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/forward.py) Forward from GoogleDrive to any adress for corpus copy
  
 ## Project's Territory/Responsibility
 ```
