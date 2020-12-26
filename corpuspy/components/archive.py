@@ -45,11 +45,14 @@ def try_to_acquire_archive_contents(pull_from: str, extract_to: Path) -> bool:
             extract_to.mkdir(parents=True, exist_ok=True)
             with fsspec.open(pull_from_with_cache, "rb") as archive:
                 with NamedTemporaryFile("wb") as tmp:
+                    print("Reading the archive in the adress...")
                     tmp.write(archive.read())
                     tmp.seek(0)
-                    print("extracting...")
+                    print("Read.")
+
+                    print("Extracting...")
                     extract_archive(tmp.name, str(extract_to))
-                    print("extracted.")
+                    print("Extracted.")
             return True
 
 
@@ -66,11 +69,16 @@ def save_archive(path_contents: Path, adress_archive: str) -> None:
     # TempDir for garbage-less upload
     with TemporaryDirectory() as tmpdir:
         # zip with deflate compression
+        print("Archiving...")
         make_archive(f"{tmpdir}/tmp", "zip", root_dir=path_contents)
+        print("Archived.")
+
         # write (==upload) the archive
         with fsspec.open(f"simplecache::{adress_archive}", "wb") as destination:
             with open(f"{tmpdir}/tmp.zip", "rb") as archive:
+                print("Writing archive...")
                 destination.write(archive.read())
+                print("Wrote.")
 
 
 def hash_args(*args) -> str:
