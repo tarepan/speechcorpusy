@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "corpuspy"
-version = "0.0.1"
+version = "0.0.2"
 description = "corpuspy - Python corpus infrastructure"
 authors = ["Tarepan"]
 license = "MIT"
@@ -10,7 +10,6 @@ repository = "https://github.com/tarepan/corpuspy"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-torchaudio = "^0.7.0"
 fsspec = {extras = ["s3"], version = "^0.8.4"}
 requests = "^2.25.1"
 tqdm = "^4.54.1"
