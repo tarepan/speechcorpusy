@@ -6,7 +6,7 @@ from tempfile import NamedTemporaryFile
 
 import fsspec
 
-from corpuspy.components.download import download_GDrive_large_contents
+from corpuspy.components.download import download_gdrive_large_contents
 
 
 def forward(source_adress: str, target_adress: str) -> None:
@@ -45,7 +45,7 @@ def forward_from_gdrive(id_gdrive_contents: str, target_adress: str, size_gb: fl
     adress_cache_target = f"simplecache::{target_adress}"
     # TempFile for garbage-less forwarding
     with NamedTemporaryFile("w+b") as tmp:
-        download_GDrive_large_contents(id_gdrive_contents, Path(tmp.name), size_gb)
+        download_gdrive_large_contents(id_gdrive_contents, Path(tmp.name), size_gb)
         tmp.seek(0)
         print("Forward: Writing to the adress...")
         with fsspec.open(adress_cache_target, "wb") as archive:

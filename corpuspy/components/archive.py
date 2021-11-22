@@ -1,3 +1,6 @@
+"""Archive and contents handlers"""
+
+
 from pathlib import Path
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 from hashlib import md5
@@ -22,24 +25,26 @@ def try_to_acquire_archive_contents(pull_from: str, extract_to: Path) -> bool:
 
     # validation
     if extract_to.is_file():
-        raise RuntimeError(f"contents ({str(extract_to)}) should be directory or empty, but it is file.")
+        msg = f"contents ({str(extract_to)}) should be directory or empty, but it is file."
+        raise RuntimeError(msg)
 
     # contents directory already exists.
     if extract_to.exists():
         return True
     else:
-        fs: fsspec.AbstractFileSystem = fsspec.filesystem(get_protocol(pull_from))
+        file_system: fsspec.AbstractFileSystem = fsspec.filesystem(get_protocol(pull_from))
         # todo: get_protocol with cache
-        archiveExists = fs.exists(pull_from)
-        archiveIsFile = fs.isfile(pull_from)
+        archive_exists = file_system.exists(pull_from)
+        archive_is_file = file_system.isfile(pull_from)
 
         # No corresponding archive. Failed to acquire.
-        if not archiveExists:
+        if not archive_exists:
             return False
         else:
             # validation
-            if not archiveIsFile:
-                raise RuntimeError(f"Archive ({pull_from}) should be file or empty, but is directory.")
+            if not archive_is_file:
+                msg = f"Archive ({pull_from}) should be file or empty, but is directory."
+                raise RuntimeError(msg)
 
             # A dataset file exists, so pull and extract.
             pull_from_with_cache = f"simplecache::{pull_from}"
@@ -87,7 +92,7 @@ def hash_args(*args) -> str:
     """
 
     contents = ""
-    for c in args:
-        contents = f"{contents}_{str(c)}"
+    for arg in args:
+        contents = f"{contents}_{str(arg)}"
     contents = md5(contents.encode('utf-8')).hexdigest()
     return contents

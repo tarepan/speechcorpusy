@@ -1,23 +1,28 @@
-import hashlib
+"""Clone of TorchAudio"""
+
+
 import logging
 import os
 import tarfile
-import urllib
-import urllib.request
 import zipfile
-from typing import Any, Iterable, List, Optional
+from typing import List, Optional
 
 
-def extract_archive(from_path: str, to_path: Optional[str] = None, overwrite: bool = False) -> List[str]:
+def extract_archive(
+    from_path: str,
+    to_path: Optional[str] = None,
+    overwrite: bool = False
+) -> List[str]:
     """Extract archive.
-    
+
     **Copyright on torchAudio**
-    [origin](https://github.com/pytorch/audio/blob/31a69c36c3b7292b43984c7b3b9b01603714749f/torchaudio/datasets/utils.py#L145)
-    
+    [origin](https://github.com/pytorch/audio/blob/
+        31a69c36c3b7292b43984c7b3b9b01603714749f/torchaudio/datasets/utils.py#L145)
+
     Args:
         from_path (str): the path of the archive.
-        to_path (str or None, optional): the root path of the extraced files (directory of from_path)
-            (Default: ``None``)
+        to_path (str or None, optional): the root path
+            of the extraced files (directory of from_path)
         overwrite (bool, optional): overwrite existing files (Default: ``False``)
     Returns:
         list: List of paths to extracted files even if not overwritten.
@@ -34,14 +39,16 @@ def extract_archive(from_path: str, to_path: Optional[str] = None, overwrite: bo
 
     try:
         with tarfile.open(from_path, "r") as tar:
-            logging.info("Opened tar file {}.".format(from_path))
+            msg = f"Opened tar file {from_path}."
+            logging.info(msg)
             files = []
             for file_ in tar:  # type: Any
                 file_path = os.path.join(to_path, file_.name)
                 if file_.isfile():
                     files.append(file_path)
                     if os.path.exists(file_path):
-                        logging.info("{} already extracted.".format(file_path))
+                        msg = f"{file_path} already extracted."
+                        logging.info(msg)
                         if not overwrite:
                             continue
                 tar.extract(file_, to_path)
@@ -51,12 +58,14 @@ def extract_archive(from_path: str, to_path: Optional[str] = None, overwrite: bo
 
     try:
         with zipfile.ZipFile(from_path, "r") as zfile:
-            logging.info("Opened zip file {}.".format(from_path))
+            msg = f"Opened zip file {from_path}."
+            logging.info(msg)
             files = zfile.namelist()
             for file_ in files:
                 file_path = os.path.join(to_path, file_)
                 if os.path.exists(file_path):
-                    logging.info("{} already extracted.".format(file_path))
+                    msg = f"{file_path} already extracted."
+                    logging.info(msg)
                     if not overwrite:
                         continue
                 zfile.extract(file_, to_path)

@@ -1,3 +1,6 @@
+"""Corpus download handlers"""
+
+
 from pathlib import Path
 from typing import Optional
 
@@ -5,7 +8,11 @@ from tqdm import tqdm
 import requests
 
 
-def download_GDrive_large_contents(id: str, path_archive_local: Path, total_size_GB: float) -> None:
+def download_gdrive_large_contents(
+    item_id: str,
+    path_archive_local: Path,
+    total_size_gb: float
+) -> None:
     """Download large contents in Google Drive.
 
     Large contents in Google Drive needs special handling for virus check procedure.
@@ -19,12 +26,12 @@ def download_GDrive_large_contents(id: str, path_archive_local: Path, total_size
     path_archive_local.parent.mkdir(parents=True, exist_ok=True)
 
     # Request cookies for big file download.
-    url_for_cookies = f"https://drive.google.com/uc?export=download&id={id}"
-    r = requests.get(url_for_cookies)
+    url_for_cookies = f"https://drive.google.com/uc?export=download&id={item_id}"
+    res_dl = requests.get(url_for_cookies)
     code: Optional[str] = None
-    for ck in r.cookies:
-        if "download_warning" in ck.name:
-            code = ck.value
+    for cookie in res_dl.cookies:
+        if "download_warning" in cookie.name:
+            code = cookie.value
     if code is None:
         raise RuntimeError("download code is `None`. Please make issue in GitHub.")
 
@@ -32,8 +39,8 @@ def download_GDrive_large_contents(id: str, path_archive_local: Path, total_size
     url = f"{url_for_cookies}&confirm={code}"
     # Auto content-length acquisition do not work in GDrive.
     # file_size = int(requests.head(url, cookies=r.cookies).headers["content-length"])
-    file_size = int(total_size_GB*1000*1000*1000)
-    res = requests.get(url, cookies=r.cookies, stream=True)
+    file_size = int(total_size_gb*1000*1000*1000)
+    res = requests.get(url, cookies=res_dl.cookies, stream=True)
     pbar = tqdm(total=file_size, unit="B", unit_scale=True)
     with open(path_archive_local, mode="wb") as file:
         for chunk in res.iter_content(chunk_size=1024):
@@ -43,4 +50,8 @@ def download_GDrive_large_contents(id: str, path_archive_local: Path, total_size
 
 
 if __name__ == "__main__":
-    download_GDrive_large_contents("1NyiZCXkYTdYBNtD1B-IMAYCVa-0SQsKX", Path("./jsss_auto.zip"), 1.09)
+    download_gdrive_large_contents(
+        "1NyiZCXkYTdYBNtD1B-IMAYCVa-0SQsKX",
+        Path("./jsss_auto.zip"),
+        1.09
+    )
