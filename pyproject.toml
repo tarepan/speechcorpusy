@@ -9,7 +9,7 @@ repository = "https://github.com/tarepan/corpuspy"
 
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7.1"
 fsspec = {version = ">=2021.5.0", extras = ["s3"]}
 requests = "^2.25.1"
 tqdm = "^4.54.1"
