@@ -1,14 +1,27 @@
 """corpuspy Interface"""
 
 
-from typing import Generic, TypeVar, Optional, List
+from typing import Optional, List
 from abc import ABC, abstractmethod
 from pathlib import Path
 from dataclasses import dataclass
 
 
-# Corpus item identity.
-Id = TypeVar('Id')
+@dataclass(frozen=True)
+class ItemId:
+    """Identity of corpus item.
+
+    Args:
+        subtype: Sub-corpus name
+        speaker: Speaker ID
+        name: Item name
+    """
+    subtype: str
+    speaker: str
+    name: str
+    # Design Note: Audio Length
+    #   Why not audio length? -> 'Effective' length differ case by case.
+
 
 @dataclass
 class ConfCorpus:
@@ -25,7 +38,7 @@ class ConfCorpus:
     root: Optional[str] = None
     download: bool = False
 
-class AbstractCorpus(ABC, Generic[Id]):
+class AbstractCorpus(ABC):
     """Interface of corpus archive/contents handler.
     """
 
@@ -69,7 +82,7 @@ class AbstractCorpus(ABC, Generic[Id]):
         #         in Google Drive to any your private adress.
 
     @abstractmethod
-    def get_identities(self) -> List[Id]:
+    def get_identities(self) -> List[ItemId]:
         """Get corpus item identities.
 
         Returns:
@@ -91,7 +104,7 @@ class AbstractCorpus(ABC, Generic[Id]):
         #   Hard-coded identity list enable contents-independent identity acquisition.
 
     @abstractmethod
-    def get_item_path(self, item_id: Id) -> Path:
+    def get_item_path(self, item_id: ItemId) -> Path:
         """Get a path of the item.
 
         Args:
