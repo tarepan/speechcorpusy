@@ -1,6 +1,6 @@
 <div align="center">
 
-# speechcorpusy
+# 🎤 speechcorpusy 📖
 The Python speech corpus handler
 
 </div>
@@ -105,12 +105,12 @@ Once you understand helpers, you may be able to implement new handler within 15-
 
 ### Full API list
 All handlers 
-- `corpuspy.presets`
+- `speechcorpusy.presets`
   - ZeroSpeech2019/`ZR19`, JVS/`JVS`, and others coming soon!
-- [`corpuspy.interface.AbstractCorpus`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/interface.py): the interface
-- `corpuspy.helper`
-  - [`.contents.get_contents`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
-  - [`.forward`](https://github.com/tarepan/corpuspy/blob/main/corpuspy/helper/forward.py)
+- [`speechcorpusy.interface.AbstractCorpus`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/interface.py): the interface
+- `speechcorpusy.helper`
+  - [`.contents.get_contents`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
+  - [`.forward`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/helper/forward.py)
     - `.forward`: Forward a corpus archive from origin to any adress for download or mirroring
     - `.forward_from_GDrive`: Forward from GoogleDrive to any adress for corpus copy
 

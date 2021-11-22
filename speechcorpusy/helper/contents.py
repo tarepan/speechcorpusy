@@ -4,7 +4,7 @@
 from typing import Callable
 from pathlib import Path
 
-from corpuspy.components.archive import try_to_acquire_archive_contents
+from speechcorpusy.components.archive import try_to_acquire_archive_contents
 
 
 def get_contents(

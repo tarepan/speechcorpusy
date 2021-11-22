@@ -1,4 +1,4 @@
-"""corpuspy Interface"""
+"""speechcorpusy Interface"""
 
 
 from typing import Optional, List
@@ -60,7 +60,7 @@ class AbstractCorpus(ABC):
 
         # Helpers:
         #     `get_adress`:
-        #         `get_adress` is a function in `corpuspy.helper.adress` module.
+        #         `get_adress` is a function in `speechcorpusy.helper.adress` module.
         #         This helper get path of corpus archive file and contents directory.
 
     @abstractmethod
@@ -70,14 +70,14 @@ class AbstractCorpus(ABC):
 
         # Helpers:
         #     `get_contents`:
-        #         `get_contents` is a function in `corpuspy.helper.contents` module.
+        #         `get_contents` is a function in `speechcorpusy.helper.contents` module.
         #         This helper get corpus contents from private adress
         #         with origin->private forwarding fallback-callback.
         #    `forward`:
-        #         `forward` is a function in `corpuspy.helper.forward` module.
+        #         `forward` is a function in `speechcorpusy.helper.forward` module.
         #         This helper forward any source file to any target adress.
         #    `forward_from_GDrive`:
-        #         `forward_from_GDrive` is a function in `corpuspy.helper.forward` module.
+        #         `forward_from_GDrive` is a function in `speechcorpusy.helper.forward` module.
         #         This helper forward an big (>1GB) archive file
         #         in Google Drive to any your private adress.
 

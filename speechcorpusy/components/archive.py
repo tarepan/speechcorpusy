@@ -9,7 +9,7 @@ from shutil import make_archive
 import fsspec
 from fsspec.utils import get_protocol
 
-from corpuspy.components.taudio import extract_archive
+from speechcorpusy.components.taudio import extract_archive
 
 
 def try_to_acquire_archive_contents(pull_from: str, extract_to: Path) -> bool:

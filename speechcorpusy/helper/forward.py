@@ -6,7 +6,7 @@ from tempfile import NamedTemporaryFile
 
 import fsspec
 
-from corpuspy.components.download import download_gdrive_large_contents
+from speechcorpusy.components.download import download_gdrive_large_contents
 
 
 def forward(source_adress: str, target_adress: str) -> None:

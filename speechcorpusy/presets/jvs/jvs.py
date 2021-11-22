@@ -3,10 +3,10 @@
 from typing import List, Tuple
 from pathlib import Path
 
-from corpuspy.interface import AbstractCorpus, ItemId, ConfCorpus
-from corpuspy.helper.adress import get_adress
-from corpuspy.helper.contents import get_contents
-from corpuspy.helper.forward import forward_from_gdrive
+from speechcorpusy.interface import AbstractCorpus, ItemId, ConfCorpus
+from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.contents import get_contents
+from speechcorpusy.helper.forward import forward_from_gdrive
 
 
 # JVS: 'Japanese versatile speech corpus'
