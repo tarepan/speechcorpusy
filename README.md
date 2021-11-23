@@ -39,7 +39,7 @@ With these three functionalities, you can
 ### .wav Read
 You can read a wav file with only five lines of code.
 ```python
-corpus = speechcorpusy.presets.ZR19(conf) # Preset corpus
+corpus = speechcorpusy.presets.ZR19(ConfCorpus(None, download=True)) # Preset corpus
 corpus.get_contents() # Automatic corpus data download
 all_utterances = corpus.get_identities() # List up utterances
 path_wave_No1 = corpus.get_item_path(all_utterances[0]) # Get the path
