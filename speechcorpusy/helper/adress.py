@@ -37,4 +37,4 @@ def get_adress(
     rel_corpus = f"corpuses/{corpus_name}/{variant_type}"
     archive_file = f"{archive_root}/{rel_corpus}/archive/{archive_name}"
     contents_dir = f"{contents_root}/{rel_corpus}/contents"
-    return archive_file, contents_dir
+    return archive_file, Path(contents_dir)
