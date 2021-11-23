@@ -111,9 +111,9 @@ class ZR19(AbstractCorpus):
         # No pattern in file name, so need hard-coded file name list
         ids: List[ItemId] = []
         for item in utterances_unit:
-            ids.append(ItemId("train-unit", item, item[0:4]))
+            ids.append(ItemId("train-unit", item[0:4], item))
         for item in utterances_voice:
-            ids.append(ItemId("train-voice", item, item[0:4]))
+            ids.append(ItemId("train-voice", item[0:4], item))
         return ids
 
     def get_item_path(self, item_id: ItemId) -> Path:
