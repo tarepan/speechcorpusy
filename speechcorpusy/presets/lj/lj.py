@@ -90,7 +90,8 @@ class LJ(AbstractCorpus):
         ids: List[ItemId] = []
         for group in range(1,51):
             for num in group_info[group]:
-                ids.append(ItemId("default", "default", f"LJ{group.zfill(3)}-{num.zfill(4)}"))
+                name = f"LJ{str(group).zfill(3)}-{str(num).zfill(4)}"
+                ids.append(ItemId("default", "default", name))
         return ids
 
     def get_item_path(self, item_id: ItemId) -> Path:
