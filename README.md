@@ -117,6 +117,29 @@ All handlers
 Of course, the value of `ItemID`'s `subtype`/`speaker`/`name` differ corpus by corpus.  
 Currently, please check these values in each preset codes.  
 
+### Advanced usecase
+#### Dynamic corpus switching
+Python's built-in `getattr` enable dynamic preset class use.  
+With this feature, you can access any presets with just one-line.
+
+```python
+# `args.corpus_name` is exact corpus Class name (e.g. "LJ")
+corpus = getattr(speechcorpusy.presets, args.corpus_name)(conf_corpus)
+# If you switch command-line argument, corpus is automatically switched, wow!
+```
+
+For safe access in real usecase, we provide `corpus_list`.  
+
+```python
+from speechcorpusy import presets
+
+if args.corpus_name in presets.corpus_list:
+    corpus_cls = getattr(presets, args.corpus_name)
+    corpus = corpus_cls(conf_corpus)
+else:
+    raise Exception(f"Corpus '{args.corpus_name}' is not supported by 'speechcurpusy'.")
+```
+
 ## Project's Territory/Responsibility
 ```
      Corpus ------------- Dataset ------------- Loader/Batcher  
