@@ -10,13 +10,13 @@ With preset handlers & interface & utilities, it become easy.
 `speechcorpusy` is the one!  
 
 ```python
-corpus = speechcorpusy.presets.ZR19(conf)
+corpus = speechcorpusy.presets.LJ(ConfCorpus(download=True))
 corpus.get_contents()
 all_utterances = corpus.get_identities()
 path_wave_No1 = corpus.get_item_path(all_utterances[0])
 
 sr, wave = scipy.io.wavfile.read(path_wave_No1)
-# You can read a wav file with only five lines of code!
+# You can read a wav file in LJSpeech with only five lines of code!
 ```
 
 ## What `speechcorpusy` do?
