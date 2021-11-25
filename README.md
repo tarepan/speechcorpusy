@@ -39,7 +39,7 @@ With these three functionalities, you can
 ### .wav Read
 You can read a wav file with only five lines of code.
 ```python
-corpus = speechcorpusy.presets.ZR19(ConfCorpus(None, download=True)) # Preset corpus
+corpus = speechcorpusy.presets.LJ(ConfCorpus(None, download=True)) # Preset LJSpeech corpus
 corpus.get_contents() # Automatic corpus data download
 all_utterances = corpus.get_identities() # List up utterances
 path_wave_No1 = corpus.get_item_path(all_utterances[0]) # Get the path
@@ -49,16 +49,16 @@ sr, wave = scipy.io.wavfile.read(path_wave_No1)
 ### Corpus Switching
 You can switch corpus without change in corpus-using codes.  
 ```python
-# corpus = speechcorpusy.presets.ZR19(conf)
-corpus = speechcorpusy.presets.JVS(conf)
+# corpus = speechcorpusy.presets.LJ(conf) # LJSpeech corpus
+corpus = speechcorpusy.presets.JVS(conf) # Japanese versatile speech corpus
 
-# That's all. Now data is switched from ZR19 to JVS.
+# That's all. Now data is switched from LJSpeech to JVS.
 # All downsteam code are never affected!
 ```
 ### Item selection
 Choose your favorite data!  
 ```python
-corpus = speechcorpusy.presets.ZR19(conf)
+corpus = speechcorpusy.presets.LJ(conf)
 alls = corpus.get_identities() # All itemID acquired
 
 # Any your favorite items!
@@ -100,13 +100,13 @@ class AbstractCorpus:
 ```
 ### For handler developer
 Implement `speechcorpusy` with helpers.  
-We strongly encourage you to check preset (e.g. [ZR19]()).  
+We strongly encourage you to check preset (e.g. [LJ](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/presets/lj/lj.py)).  
 Once you understand helpers, you may be able to implement new handler within 15-min!  
 
 ### Full API list
 All handlers 
 - `speechcorpusy.presets`
-  - ZeroSpeech2019/`ZR19`, JVS/`JVS`, and others coming soon!
+  - LJSpeech/`LJ`, ZeroSpeech2019/`ZR19`, JVS/`JVS`, and others coming soon!
 - [`speechcorpusy.interface.AbstractCorpus`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/interface.py): the interface
 - `speechcorpusy.helper`
   - [`.contents.get_contents`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
