@@ -106,7 +106,7 @@ Once you understand helpers, you may be able to implement new handler within 15-
 ### Full API list
 All handlers 
 - `speechcorpusy.presets`
-  - LJSpeech/`LJ`, ZeroSpeech2019/`ZR19`, JVS/`JVS`, and others coming soon!
+  - LJSpeech/`LJ`, VCTK/`VCTK`, JVS/`JVS` and so on
 - [`speechcorpusy.interface.AbstractCorpus`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/interface.py): the interface
 - `speechcorpusy.helper`
   - [`.contents.get_contents`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/helper/contents.py): Corpus contents acquisition (private local/S3/GDrive/etc & hook for origin)
@@ -116,6 +116,15 @@ All handlers
 
 Of course, the value of `ItemID`'s `subtype`/`speaker`/`name` differ corpus by corpus.  
 Currently, please check these values in each preset codes.  
+
+#### Presets
+| corpus                            | handler      |
+|-----------------------------------|--------------|
+| LJSpeech                          | `LJ`         |
+| VCTK                              | `VCTK`       |
+| ZeroSpeech2019                    | `ZR19`       |
+| JVS                               | `JVS`        |
+| voiceactress100 by Tsukuyomi-chan | `Act100TKYM` |
 
 ### Advanced usecase
 #### Dynamic corpus switching
