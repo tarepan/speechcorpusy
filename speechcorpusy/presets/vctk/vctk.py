@@ -1,7 +1,7 @@
 """LJ corpus handler"""
 
 
-from typing import List
+from typing import List, Tuple
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus, ItemId
@@ -59,6 +59,11 @@ MAX_UTTR: List[int] = [
     424, 410, 400, 400, 424, 424, 424, 424, 424, 423, 309, 424, 295
 ]
 
+# Broken utterances (0sec silence)
+BROKENS: List[Tuple[str, int]] = [
+    ("p295", 47), ("p345", 387), ("p317", 424), ("p305", 423)
+]
+
 
 class VCTK(AbstractCorpus):
     """Archive/contents handler of VCTK corpus.
@@ -112,7 +117,8 @@ class VCTK(AbstractCorpus):
 
         for spk, num_max, spk_missings in zip(SPKS, MAX_UTTR, MISSINGS):
             for serial in range(1, num_max+1):
-                if serial not in spk_missings:
+                #       missing utterances               broken utterances
+                if (serial not in spk_missings) and ((spk, serial) not in BROKENS):
                     ids.append(ItemId("wav", spk, str(serial).zfill(3)))
 
         return ids
