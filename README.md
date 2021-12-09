@@ -35,6 +35,11 @@ With these three functionalities, you can
 - **focus on corpus usage** as corpus user
 - **focus on corpus-specific implementations** as handler implementer
 
+## Install
+```bash
+pip install git+https://github.com/tarepan/speechcorpusy.git
+```
+
 ## Usecases
 ### .wav Read
 You can read a wav file with only five lines of code.
