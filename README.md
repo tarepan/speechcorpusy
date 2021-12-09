@@ -10,7 +10,9 @@ With preset handlers & interface & utilities, it become easy.
 `speechcorpusy` is the one!  
 
 ```python
-corpus = speechcorpusy.presets.LJ(ConfCorpus(download=True))
+from speechcorpusy import load_preset
+
+corpus = load_preset("LJ", download=True)
 corpus.get_contents()
 all_utterances = corpus.get_identities()
 path_wave_No1 = corpus.get_item_path(all_utterances[0])
@@ -44,7 +46,7 @@ pip install git+https://github.com/tarepan/speechcorpusy.git
 ### .wav Read
 You can read a wav file with only five lines of code.
 ```python
-corpus = speechcorpusy.presets.LJ(ConfCorpus(None, download=True)) # Preset LJSpeech corpus
+corpus = speechcorpusy.load_preset("LJ", root="./archives", download=True) # Preset LJSpeech corpus
 corpus.get_contents() # Automatic corpus data download
 all_utterances = corpus.get_identities() # List up utterances
 path_wave_No1 = corpus.get_item_path(all_utterances[0]) # Get the path
@@ -52,18 +54,18 @@ path_wave_No1 = corpus.get_item_path(all_utterances[0]) # Get the path
 sr, wave = scipy.io.wavfile.read(path_wave_No1)
 ```
 ### Corpus Switching
-You can switch corpus without change in corpus-using codes.  
+You can switch corpuses by just changing an argument.  
 ```python
-# corpus = speechcorpusy.presets.LJ(conf) # LJSpeech corpus
-corpus = speechcorpusy.presets.JVS(conf) # Japanese versatile speech corpus
+# corpus = speechcorpusy.load_preset("LJ") # LJSpeech corpus
+corpus = speechcorpusy.load_preset("VCTK") # VCTK corpus
 
-# That's all. Now data is switched from LJSpeech to JVS.
+# That's all. Now data is switched from LJSpeech to VCTK.
 # All downsteam code are never affected!
 ```
 ### Item selection
 Choose your favorite data!  
 ```python
-corpus = speechcorpusy.presets.LJ(conf)
+corpus = speechcorpusy.load_preset("LJ")
 alls = corpus.get_identities() # All itemID acquired
 
 # Any your favorite items!
@@ -76,24 +78,25 @@ wave_speaker_a_No1 = librosa.load(corpus.get_item_path(speaker_a[0])
 
 ## APIs
 ### For handler user
-For handler user, understanding just 3 classes is enough; *itemID* & *config* & *corpus*.  
+For handler user, understanding just 1 function / 2 classes is enough; *load_preset* & *itemID* & *corpus*.  
+
 **All handers use same config, have same methods and yield same itemID**.  
 
 ```python
+def load_preset(
+    name: str,                  # Preset corpus name
+    root: Optional[str],        # Adress under which the corpus archive is found or downloaded
+    download: Optional[bool],   # Whether to download original corpus if not found in `root`
+    conf: Optional[ConfCorpus], # (Advanced) Wrapper of `root` and `download`
+    ) -> AbstractCorpus:
+
 @dataclass
 class ItemId:
     subtype: str # Sub-corpus name
     speaker: str # Speaker ID
     name: str    # Item name
 
-@dataclass
-class ConfCorpus:
-    root     # Adress of the directory under which the corpus archive is found or downloaded
-    download # Whether to download original corpus if it is not found in `root`
-
 class AbstractCorpus:
-    def __init__(self, conf: ConfCorpus) -> None:
-
     def get_contents(self) -> None:
         """Get corpus contents into local."""
 
@@ -109,7 +112,8 @@ We strongly encourage you to check preset (e.g. [LJ](https://github.com/tarepan/
 Once you understand helpers, you may be able to implement new handler within 15-min!  
 
 ### Full API list
-All handlers 
+All handlers  
+- `speechcorpusy.load_preset()`: Load specified presets
 - `speechcorpusy.presets`
   - LJSpeech/`LJ`, VCTK/`VCTK`, JVS/`JVS` and so on
 - [`speechcorpusy.interface.AbstractCorpus`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/interface.py): the interface
@@ -130,29 +134,6 @@ Currently, please check these values in each preset codes.
 | ZeroSpeech2019                    | `ZR19`       |
 | JVS                               | `JVS`        |
 | voiceactress100 by Tsukuyomi-chan | `Act100TKYM` |
-
-### Advanced usecase
-#### Dynamic corpus switching
-Python's built-in `getattr` enable dynamic preset class use.  
-With this feature, you can access any presets with just one-line.
-
-```python
-# `args.corpus_name` is exact corpus Class name (e.g. "LJ")
-corpus = getattr(speechcorpusy.presets, args.corpus_name)(conf_corpus)
-# If you switch command-line argument, corpus is automatically switched, wow!
-```
-
-For safe access in real usecase, we provide `corpus_list`.  
-
-```python
-from speechcorpusy import presets
-
-if args.corpus_name in presets.corpus_list:
-    corpus_cls = getattr(presets, args.corpus_name)
-    corpus = corpus_cls(conf_corpus)
-else:
-    raise Exception(f"Corpus '{args.corpus_name}' is not supported by 'speechcurpusy'.")
-```
 
 ## Project's Territory/Responsibility
 ```
