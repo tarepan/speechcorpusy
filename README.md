@@ -133,6 +133,7 @@ Currently, please check these values in each preset codes.
 | VCTK                              | `VCTK`       |
 | ZeroSpeech2019                    | `ZR19`       |
 | JVS                               | `JVS`        |
+| Voice Conversion Challenge 2020   | `VCC20`      |
 | voiceactress100 by Tsukuyomi-chan | `Act100TKYM` |
 
 ## Project's Territory/Responsibility
