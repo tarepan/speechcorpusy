@@ -49,6 +49,7 @@ def try_to_acquire_archive_contents(pull_from: str, extract_to: Path) -> bool:
             # A dataset file exists, so pull and extract.
             pull_from_with_cache = f"simplecache::{pull_from}"
             extract_to.mkdir(parents=True, exist_ok=True)
+            print("Accessing the archive in the adress...")
             with fsspec.open(pull_from_with_cache, "rb") as archive:
                 with NamedTemporaryFile("wb") as tmp:
                     print("Reading the archive in the adress...")
