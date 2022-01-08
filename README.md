@@ -132,6 +132,7 @@ Currently, please check these values in each preset codes.
 | LJSpeech                          | `LJ`         |
 | VCTK                              | `VCTK`       |
 | ZeroSpeech2019                    | `ZR19`       |
+| JUST                              | `JUST`       |
 | JVS                               | `JVS`        |
 | Voice Conversion Challenge 2020   | `VCC20`      |
 | voiceactress100 by Tsukuyomi-chan | `Act100TKYM` |
