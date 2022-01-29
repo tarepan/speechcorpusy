@@ -7,6 +7,6 @@ from .lj.lj import LJ            # pylint: disable=unused-import
 from .vctk.vctk import VCTK      # pylint: disable=unused-import
 from .vcc2020.vcc20 import VCC20 # pylint: disable=unused-import
 from .act100tsukuyomi.act100tsukuyomi import Act100TKYM # pylint: disable=unused-import
+from .adhoc.adhoc import AdHoc   # pylint: disable=unused-import
 
-
-corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "Act100TKYM"]
+corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "Act100TKYM", "AdHoc"]
