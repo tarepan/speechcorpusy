@@ -76,12 +76,12 @@ class JVS(AbstractCorpus):
 
         # Items which should be excluded. (spk, name)
         excluded: List[Tuple[int, int]] = [
-            ("30", "45"), ("74", "94"), ("89", "19"), # Missing
-            ("9", "95"), # 0sec length
-            ("98", "60"), ("98", "99"), # contain cough
+            ("jvs030", "45"), ("jvs074", "94"), ("jvs089", "19"), # Missing
+            ("jvs009", "95"), # 0sec length
+            ("jvs098", "60"), ("jvs098", "99"), # contain cough
         ]
         candidates: List[ItemId] = [
-            ItemId("parallel100", str(spk), str(utt))
+            ItemId("parallel100", f"jvs{str(spk).zfill(3)}", str(utt))
             for utt in range(1, 101)
             for spk in range(1, 101)
         ]
@@ -100,6 +100,5 @@ class JVS(AbstractCorpus):
             Path of the target item.
         """
         root = self._path_contents / self._archive_base
-        spk_dir = f"jvs{item_id.speaker.zfill(3)}"
         f_name = f"VOICEACTRESS100_{item_id.name.zfill(3)}.wav"
-        return root / spk_dir / "parallel100" / "wav24kHz16bit" / f_name
+        return root / item_id.speaker / "parallel100" / "wav24kHz16bit" / f_name

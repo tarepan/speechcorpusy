@@ -27,7 +27,7 @@ class LJ(AbstractCorpus):
 
     ItemID:
         subcorpus: "default"
-        speaker: "default"
+        speaker: "lj_default"
         name: f"LJ{N.zfill(3)}-{N.zfill(4)}"
     """
 
@@ -91,7 +91,7 @@ class LJ(AbstractCorpus):
         for group in range(1,51):
             for num in group_info[group]:
                 name = f"LJ{str(group).zfill(3)}-{str(num).zfill(4)}"
-                ids.append(ItemId("default", "default", name))
+                ids.append(ItemId("default", "lj_default", name))
         return ids
 
     def get_item_path(self, item_id: ItemId) -> Path:

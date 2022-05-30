@@ -19,7 +19,7 @@ class JSUT(AbstractCorpus):
 
     ItemID:
         subcorpus: "basic5000"
-        speaker: "default"
+        speaker: "jsut_default"
         name: f"BASIC5000_{N.zfill(4)}"
     """
 
@@ -63,7 +63,7 @@ class JSUT(AbstractCorpus):
         """
 
         return [
-            ItemId("basic5000", "default", f"BASIC5000_{str(i).zfill(4)}")
+            ItemId("basic5000", "jsut_default", f"BASIC5000_{str(i).zfill(4)}")
             for i in range(1, 5001)
         ]
 

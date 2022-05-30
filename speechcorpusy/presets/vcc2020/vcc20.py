@@ -149,4 +149,4 @@ class VCC20(AbstractCorpus):
         """
 
         root = self._path_contents / self._archive_base
-        return root / SUBCORPUSES_DIR[item_id.subtype] / item_id.speaker / f"{item_id.name}.wav"
+        return root / SUBCORPUSES_DIR[item_id.subtype] / item_id.speaker[6:] / f"{item_id.name}.wav"

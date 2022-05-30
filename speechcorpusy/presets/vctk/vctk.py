@@ -70,7 +70,7 @@ class VCTK(AbstractCorpus):
 
     ItemID:
         subcorpus: "wav"
-        speaker: f"p{N.zfill(3)}"
+        speaker: f"vctk_p{N.zfill(3)}"
         name: f"{N.zfill(3)}"
     """
 
@@ -119,7 +119,7 @@ class VCTK(AbstractCorpus):
             for serial in range(1, num_max+1):
                 #       missing utterances               broken utterances
                 if (serial not in spk_missings) and ((spk, serial) not in BROKENS):
-                    ids.append(ItemId("wav", spk, str(serial).zfill(3)))
+                    ids.append(ItemId("wav", f"vctk_{spk}", str(serial).zfill(3)))
 
         return ids
 
@@ -132,4 +132,4 @@ class VCTK(AbstractCorpus):
             Path of the target item.
         """
         root = self._path_contents / self._archive_base
-        return root / "wav48" / item_id.speaker / f"{item_id.speaker}_{item_id.name}.wav"
+        return root / "wav48" / item_id.speaker[5:] / f"{item_id.speaker[5:]}_{item_id.name}.wav"

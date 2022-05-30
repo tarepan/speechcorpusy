@@ -27,7 +27,7 @@ class Act100TKYM(AbstractCorpus):
 
     ItemID:
         subcorpus: "default"
-        speaker: "default"
+        speaker: "act100tkym"
         name: "NNN"
     """
 
@@ -68,7 +68,7 @@ class Act100TKYM(AbstractCorpus):
             Full item identity list.
         """
 
-        return [ItemId("default", "default", str(i).zfill(3)) for i in range(1, 101)]
+        return [ItemId("default", "act100tkym", str(i).zfill(3)) for i in range(1, 101)]
 
     def get_item_path(self, item_id: ItemId) -> Path:
         """Get path of the item.
