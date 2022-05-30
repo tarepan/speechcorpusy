@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "speechcorpusy"
-version = "1.3.0"
+version = "1.4.0"
 description = "speechcorpusy - Python corpus handler & infrastructure"
 authors = ["Tarepan"]
 license = "MIT"
