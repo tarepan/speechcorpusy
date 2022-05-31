@@ -84,10 +84,10 @@ For handler user, understanding just 1 function / 2 classes is enough; *load_pre
 
 ```python
 def load_preset(
-    name: str,                  # Preset corpus name
+    name: Optional[str],        # Preset corpus name
     root: Optional[str],        # Adress under which the corpus archive is found or downloaded
     download: Optional[bool],   # Whether to download original corpus if not found in `root`
-    conf: Optional[ConfCorpus], # (Advanced) Wrapper of `root` and `download`
+    conf: Optional[ConfCorpus], # (Advanced) Wrapper of `name`/`root`/`download`
     ) -> AbstractCorpus:
 
 @dataclass

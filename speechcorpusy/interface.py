@@ -28,13 +28,14 @@ class ConfCorpus:
     """Configuration of corpus.
 
     Args:
+        name: Corpus name
         root: Adress of the directory under which the corpus archive is found or downloaded
         download: Whether to download original corpus if it is not found in `root`
     """
 
     # Design Notes:
     #   `root` & `download` are matched with `torchaudio.datasets`
-
+    name: str
     root: Optional[str] = None
     download: bool = False
 
