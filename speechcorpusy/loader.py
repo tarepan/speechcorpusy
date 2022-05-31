@@ -28,13 +28,13 @@ def load_preset(
 
     # Check config inconsistency
     # Both `name` and `conf` are provided, but different value
-    if name and conf and (name is not conf.name):
+    if name and conf and (name != conf.name):
         raise Exception(f"'name' and 'conf.name' is inconsistent: {name} vs {conf.name}")
     # Both `root` and `conf` are provided, but different value
-    if root and conf and (root is not conf.root):
+    if root and conf and (root != conf.root):
         raise Exception(f"'root' and 'conf.root' is inconsistent: {root} vs {conf.root}")
     # Both `download` and `conf` are provided, but different value
-    if (download is not None) and conf and (download is not conf.download):
+    if (download is not None) and conf and (download != conf.download):
         msg = f"'download' and 'conf.download' is inconsistent: {download} vs {conf.download}"
         raise Exception(msg)
 
