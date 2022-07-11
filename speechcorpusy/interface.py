@@ -35,7 +35,9 @@ class ConfCorpus:
 
     # Design Notes:
     #   `root` & `download` are matched with `torchaudio.datasets`
-    name: str
+    # Design Notes:
+    #   name="" is for omegaconf
+    name: str = ""
     root: Optional[str] = None
     download: bool = False
 
