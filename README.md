@@ -137,6 +137,7 @@ Currently, please check these values in each preset codes.
 | Voice Conversion Challenge 2020   | `VCC20`      |
 | voiceactress100 by Tsukuyomi-chan | `Act100TKYM` |
 | ROHAN4600 by Zundamon             | `RHN46ZND`   |
+| sample audio                      | `TEST`       |
 |                                   |              |
 | AdHoc                             | `AdHoc`      |
 

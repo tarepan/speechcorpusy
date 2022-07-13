@@ -23,6 +23,9 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:3.7
 #     && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
+# For librosa in dev
+RUN apt-get update && apt-get install -y libsndfile1
+
 # package dependency manager `poetry` without environment isolation (It is a job of Docker.)
 ENV POETRY_VIRTUALENVS_CREATE=false
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
