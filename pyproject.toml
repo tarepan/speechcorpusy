@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "speechcorpusy"
-version = "2.2.0"
+version = "2.2.1"
 description = "speechcorpusy - Python corpus handler & infrastructure"
 authors = ["Tarepan"]
 license = "MIT"
@@ -10,9 +10,10 @@ repository = "https://github.com/tarepan/speechcorpusy"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fsspec = {version = ">=2021.5.0", extras = ["s3"]}
+# fsspec = {version = "^2023.1", extras = ["s3"]}
+fsspec = "^2023.1"
 requests = "^2.25.1"
-tqdm = "^4.54.1"
+tqdm = "^4.54"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
@@ -20,7 +21,7 @@ librosa = "^0.9.2"
 SoundFile = "^0.10.3"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pylint.messages_control]
