@@ -11,9 +11,6 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:3.10
 RUN pip3 --disable-pip-version-check --no-cache-dir install numpy==1.22.4
 RUN pip3 --disable-pip-version-check --no-cache-dir install torch==2.0.0+cpu torchaudio==2.0.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
-# For librosa in dev
-RUN apt-get update && apt-get install -y libsndfile1
-
 # package dependency manager `poetry` without environment isolation (It is a job of Docker.)
 ENV POETRY_VIRTUALENVS_CREATE=false
 RUN curl -sSL https://install.python-poetry.org | python3 -
