@@ -106,6 +106,19 @@ class AbstractCorpus(ABC):
         #   (e.g. Get item identities for a preprocessed dataset).
         #   Hard-coded identity list enable contents-independent identity acquisition.
 
+    def get_identities_per_speaker(self) -> list[list[ItemId]]:
+        """Get corpus item identities, grouped by `.speaker` attribute.
+
+        Returns:
+            - Utterance identities, grouped by speaker. e.g. [[spk0_uttr0, spk0_uttr1, ...], [spk2_uttr0, spk2_uttr1, ...]]
+        """
+
+        utterances = self.get_identities()
+        speakers = set(map(lambda utter_id: utter_id.speaker, utterances))
+        utters_per_spks = [list(filter(lambda utter_id: utter_id.speaker == spk, utterances)) for spk in speakers]
+
+        return utters_per_spks
+
     @abstractmethod
     def get_item_path(self, item_id: ItemId) -> Path:
         """Get a path of the item.
