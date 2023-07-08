@@ -114,7 +114,7 @@ class AbstractCorpus(ABC):
         """
 
         utterances = self.get_identities()
-        speakers = set(map(lambda utter_id: utter_id.speaker, utterances))
+        speakers = sorted(list(set(map(lambda utter_id: utter_id.speaker, utterances))))
         utters_per_spks = [list(filter(lambda utter_id: utter_id.speaker == spk, utterances)) for spk in speakers]
 
         return utters_per_spks
