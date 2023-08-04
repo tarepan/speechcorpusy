@@ -1,6 +1,6 @@
 """speechcorpusy Interface"""
 
-
+from __future__ import annotations
 from typing import Optional, List
 from abc import ABC, abstractmethod
 from pathlib import Path
@@ -68,6 +68,13 @@ class AbstractCorpus(ABC):
         #         `get_adress` is a function in `speechcorpusy.helper.adress` module.
         #         This helper get path of corpus archive file and contents directory.
 
+    def __add__(self, other: AbstractCorpus) -> AbstractCorpus:
+        return MergedCorpus(self.get_corpuses() + other.get_corpuses())
+
+    def get_corpuses(self) -> list[AbstractCorpus]:
+        """Get corpuses wrapped in this instance."""
+        return [self]
+
     @abstractmethod
     def get_contents(self) -> None:
         """Get corpus contents into local.
@@ -134,3 +141,57 @@ class AbstractCorpus(ABC):
         # Implementation Notes:
         #   This is corpus-specific part, so this is your responsibility.
         #   In most cases, simply making Path based on ID argument is enough.
+
+
+class MergedCorpus(AbstractCorpus):
+    """A corpus which is composed of multiple corpuses.
+    """
+
+    def __init__(self, courpuses: list[AbstractCorpus]) -> None:
+        """Initialization without contents download/extraction.
+        """
+        self._corpuses = courpuses
+
+    def get_corpuses(self) -> list[AbstractCorpus]:
+        """Get corpuses wrapped in this instance."""
+        return self._corpuses
+
+    def get_contents(self) -> None:
+        """Get corpus contents into local.
+        """
+        for corpus in self._corpuses:
+            corpus.get_contents()
+
+    def get_identities(self) -> list[ItemId]:
+        """Get corpus item identities.
+
+        Returns:
+            Full item identity list.
+        """
+
+        return sum(list(map(lambda corpus: corpus.get_identities(), self._corpuses)), [])
+
+    def get_identities_per_speaker(self) -> list[list[ItemId]]:
+        """Get corpus item identities, grouped by `.speaker` attribute.
+
+        Returns:
+            - Utterance identities, grouped by speaker. e.g. [[spk0_uttr0, spk0_uttr1, ...], [spk2_uttr0, spk2_uttr1, ...]]
+        """
+
+        return sum(list(map(lambda corpus: corpus.get_identities_per_speaker(), self._corpuses)), [])
+
+    def get_item_path(self, item_id: ItemId) -> Path:
+        """Get a path of the item.
+
+        Args:
+            item_id: Identity of target item.
+        Returns:
+            Path of the specified item.
+        """
+
+        the_corpus = next(filter(lambda corpus: corpus.__class__.__name__ == item_id.corpus, self._corpuses), None)
+
+        if the_corpus is None:
+            raise RuntimeError(f"Corresponding corpus is not found, {item_id.corpus} not in {list(map(lambda corpus: corpus.__class__.__name__, self._corpuses))}")
+        else:
+            return the_corpus.get_item_path(item_id)

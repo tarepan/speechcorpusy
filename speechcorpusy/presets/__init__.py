@@ -8,8 +8,8 @@ from .vctk.vctk import VCTK       # pylint: disable=unused-import
 from .vcc2020.vcc20 import VCC20  # pylint: disable=unused-import
 from .act100tsukuyomi.act100tsukuyomi import Act100TKYM # pylint: disable=unused-import
 from .rhn46zunda.rhn46zunda import RHN46ZND             # pylint: disable=unused-import
-from .testcorpus.testcorpus import TEST # pylint: disable=unused-import
+from .testcorpus.testcorpus import TEST, TESTbeta       # pylint: disable=unused-import
 from .adhoc.adhoc import AdHoc    # pylint: disable=unused-import
 
 
-corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "Act100TKYM", "RHN46ZND", "TEST", "AdHoc",]
+corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "Act100TKYM", "RHN46ZND", "TEST", "TESTbeta", "AdHoc",]
