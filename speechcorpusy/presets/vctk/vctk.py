@@ -82,7 +82,6 @@ class VCTK(AbstractCorpus):
         name: f"{N.zfill(3)}"
     """
 
-    _corpus_name: str = "VCTK"
     # Version and so on
     _variant: str = "ds2019"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -98,7 +97,7 @@ class VCTK(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

@@ -20,7 +20,6 @@ class TEST(AbstractCorpus):
         name: "uttr1" | "uttr2"
     """
 
-    _corpus_name: str = "TEST"
     # Version and so on
     _variant: str = "ver0_0_0"
     _archive_name: str = "<place-holder>"

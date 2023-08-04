@@ -30,7 +30,6 @@ class RHN46ZND(AbstractCorpus):
         name: "NNNN"
     """
 
-    _corpus_name: str = "RHN46ZND"
     # Version and so on
     _variant: str = "ver1_0_0"
     _archive_name: str = "ROHAN4600_zundamon_voice.zip"
@@ -44,7 +43,7 @@ class RHN46ZND(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

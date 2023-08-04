@@ -38,7 +38,6 @@ class AdHoc(AbstractCorpus):
         name: f"{utterance_X_stem}"
     """
 
-    _corpus_name: str = "AdHoc"
     # Version and so on
     _variant: str = "default"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -54,7 +53,7 @@ class AdHoc(AbstractCorpus):
         self.conf = conf
         _, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

@@ -93,7 +93,6 @@ class VCC20(AbstractCorpus):
         name: f"{LANGS}{N.zfill(5)}"
     """
 
-    _corpus_name: str = "VCC20"
     # Version and so on
     _variant: str = "ver1_0_0"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -109,7 +108,7 @@ class VCC20(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

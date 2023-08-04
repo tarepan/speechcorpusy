@@ -31,7 +31,6 @@ class Act100TKYM(AbstractCorpus):
         name: "NNN"
     """
 
-    _corpus_name: str = "Act100TKYM"
     # Version and so on
     _variant: str = "ver1_0_0"
     _archive_name: str = "sozai-tyc-corpus1.zip"
@@ -45,7 +44,7 @@ class Act100TKYM(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

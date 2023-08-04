@@ -67,7 +67,6 @@ class ZR19(AbstractCorpus):
     """Archive/contents handler of Zero Resource Speech Challenge 2019 corpus.
     """
 
-    _corpus_name: str = "ZR19"
     # Version and so on
     _variant: str = "ver1_0_0_english"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -84,7 +83,7 @@ class ZR19(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

@@ -31,7 +31,6 @@ class LJ(AbstractCorpus):
         name: f"LJ{N.zfill(3)}-{N.zfill(4)}"
     """
 
-    _corpus_name: str = "LJSpeech"
     # Version and so on
     _variant: str = "ver1_1"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -47,7 +46,7 @@ class LJ(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )

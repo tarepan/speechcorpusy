@@ -33,7 +33,6 @@ class JVS(AbstractCorpus):
     """Archive/contents handler of JVS corpus.
     """
 
-    _corpus_name: str = "JVS"
     # Version and so on
     _variant: str = "ver1_0_0"
     # Archive file base name == 1st layer directory name of extracted archive
@@ -50,7 +49,7 @@ class JVS(AbstractCorpus):
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
-            self._corpus_name,
+            self.__class__.__name__,
             self._variant,
             self._archive_name,
         )
