@@ -61,7 +61,7 @@ class LiTTSR100(AbstractCorpus):
             Full item identity list.
         """
         #                                                                                      spk                     cptr      name1     name2
-        return list(map(lambda item: ItemId(self.__class__.__name__, "clean100", f"LiTTSR{str(item[0]).zfill(4)}", f"{item[1]}_{item[2]}_{item[4]}"), items))
+        return list(map(lambda item: ItemId(self.__class__.__name__, "clean100", f"LiTTSR{str(item[0]).zfill(4)}", f"{item[1]}_{item[2]}_{item[3]}"), items))
 
     def get_item_path(self, item_id: ItemId) -> Path:
         """Get path of the item.
