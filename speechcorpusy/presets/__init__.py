@@ -13,4 +13,4 @@ from .testcorpus.testcorpus import TEST, TESTbeta       # pylint: disable=unused
 from .adhoc.adhoc import AdHoc    # pylint: disable=unused-import
 
 
-corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "Act100TKYM", "RHN46ZND", "TEST", "TESTbeta", "AdHoc",]
+corpus_list = ["JSUT", "JVS", "ZR19", "LJ", "VCTK", "VCC20", "LiTTSR100", "Act100TKYM", "RHN46ZND", "TEST", "TESTbeta", "AdHoc",]
