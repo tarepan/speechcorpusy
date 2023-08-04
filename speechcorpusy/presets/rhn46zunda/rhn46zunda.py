@@ -25,9 +25,10 @@ class RHN46ZND(AbstractCorpus):
     """Archive/contents handler of RHN46ZND corpus.
 
     ItemID:
-        subcorpus: "default"
-        speaker: "zundamon"
-        name: "NNNN"
+        corpus:    {self.__class__.__name__}
+        subcorpus: default
+        speaker:   zundamon
+        name:      NNNN
     """
 
     # Version and so on
@@ -66,7 +67,7 @@ class RHN46ZND(AbstractCorpus):
             Full item identity list.
         """
 
-        return [ItemId("default", "zundamon", str(i).zfill(4)) for i in range(1, 4601)]
+        return [ItemId(self.__class__.__name__, "default", "zundamon", str(i).zfill(4)) for i in range(1, 4601)]
 
     def get_item_path(self, item_id: ItemId) -> Path:
         """Get path of the item.

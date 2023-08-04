@@ -88,9 +88,10 @@ class VCC20(AbstractCorpus):
     """Archive/contents handler of Voice Conversion Challenge 2020 corpus.
 
     ItemID:
+        corpus:    {self.__class__.__name__}
         subcorpus: SUBCORPUSES
-        speaker: {"S"/source | "T"/target}{LANGS}{"M"/male | "F"/female}{1|2}
-        name: f"{LANGS}{N.zfill(5)}"
+        speaker:   {"S"/source | "T"/target}{LANGS}{"M"/male | "F"/female}{1|2}
+        name:      {LANGS}{N.zfill(5)}
     """
 
     # Version and so on

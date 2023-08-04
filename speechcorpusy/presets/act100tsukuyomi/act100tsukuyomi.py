@@ -26,9 +26,10 @@ class Act100TKYM(AbstractCorpus):
     """Archive/contents handler of Act100TKYM corpus.
 
     ItemID:
-        subcorpus: "default"
-        speaker: "act100tkym"
-        name: "NNN"
+        corpus:    {self.__class__.__name__}
+        subcorpus: default
+        speaker:   act100tkym
+        name:      NNN
     """
 
     # Version and so on
@@ -67,7 +68,7 @@ class Act100TKYM(AbstractCorpus):
             Full item identity list.
         """
 
-        return [ItemId("default", "act100tkym", str(i).zfill(3)) for i in range(1, 101)]
+        return [ItemId(self.__class__.__name__, "default", "act100tkym", str(i).zfill(3)) for i in range(1, 101)]
 
     def get_item_path(self, item_id: ItemId) -> Path:
         """Get path of the item.

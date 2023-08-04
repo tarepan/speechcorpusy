@@ -77,9 +77,10 @@ class VCTK(AbstractCorpus):
     """Archive/contents handler of VCTK corpus.
 
     ItemID:
-        subcorpus: "mic2"
-        speaker: f"vctk_{'p'|'s'}{N}"
-        name: f"{N.zfill(3)}"
+        corpus:    {self.__class__.__name__}
+        subcorpus: mic2
+        speaker:   vctk_{p|s}{N}
+        name:      {N.zfill(3)}
     """
 
     # Version and so on
@@ -130,7 +131,7 @@ class VCTK(AbstractCorpus):
         for spk, num_max, spk_missings in zip(SPKS_MIC2, MAX_UTTR_MIC2, MISSINGS_MIC2):
             for serial in range(1, num_max+1):
                 if serial not in spk_missings:
-                    ids.append(ItemId("mic2", f"vctk_{spk}", str(serial).zfill(3)))
+                    ids.append(ItemId(self.__class__.__name__, "mic2", f"vctk_{spk}", str(serial).zfill(3)))
 
         return ids
 

@@ -74,12 +74,7 @@ class AdHoc(AbstractCorpus):
         for subtype in filter(lambda p: p.is_dir(), self._path_contents.iterdir()):
             for speaker in filter(lambda p: p.is_dir(), subtype.iterdir()):
                 for uttr in filter(lambda p: p.is_file(), speaker.iterdir()):
-                    ids.append(
-                        ItemId(
-                            subtype.name,
-                            speaker.name,
-                            uttr.stem,
-                    ))
+                    ids.append(ItemId(self.__class__.__name__, subtype.name, speaker.name, uttr.stem))
 
         return ids
 

@@ -12,13 +12,15 @@ class ItemId:
     """Identity of corpus item.
 
     Args:
+        corpus:  Name of corpus to which this item belong
         subtype: Sub-corpus name
         speaker: Speaker ID
-        name: Item name
+        name:    Item name
     """
+    corpus:  str
     subtype: str
     speaker: str
-    name: str
+    name:    str
     # Design Note: Audio Length
     #   Why not audio length? -> 'Effective' length differ case by case.
 
@@ -115,7 +117,7 @@ class AbstractCorpus(ABC):
 
         utterances = self.get_identities()
         speakers = sorted(list(set(map(lambda utter_id: utter_id.speaker, utterances))))
-        utters_per_spks = [list(filter(lambda utter_id: utter_id.speaker == spk, utterances)) for spk in speakers]
+        utters_per_spks = [list(filter(lambda utter_id: utter_id.speaker == spk, utterances)) for spk in speakers] # pylint: disable = cell-var-from-loop
 
         return utters_per_spks
 

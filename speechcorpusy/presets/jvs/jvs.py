@@ -80,7 +80,7 @@ class JVS(AbstractCorpus):
             ("jvs098", "60"), ("jvs098", "99"), # contain cough
         ]
         candidates: List[ItemId] = [
-            ItemId("parallel100", f"jvs{str(spk).zfill(3)}", str(utt))
+            ItemId(self.__class__.__name__, "parallel100", f"jvs{str(spk).zfill(3)}", str(utt))
             for utt in range(1, 101)
             for spk in range(1, 101)
         ]

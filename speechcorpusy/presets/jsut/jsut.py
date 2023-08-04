@@ -18,9 +18,10 @@ class JSUT(AbstractCorpus):
     """Archive/contents handler of JSUT corpus.
 
     ItemID:
-        subcorpus: "basic5000"
-        speaker: "jsut_default"
-        name: f"BASIC5000_{N.zfill(4)}"
+        corpus:    {self.__class__.__name__}
+        subcorpus: basic5000
+        speaker:   jsut_default
+        name:      BASIC5000_{N.zfill(4)}
     """
 
     # Version and so on
@@ -62,7 +63,7 @@ class JSUT(AbstractCorpus):
         """
 
         return [
-            ItemId("basic5000", "jsut_default", f"BASIC5000_{str(i).zfill(4)}")
+            ItemId(self.__class__.__name__, "basic5000", "jsut_default", f"BASIC5000_{str(i).zfill(4)}")
             for i in range(1, 5001)
         ]
 

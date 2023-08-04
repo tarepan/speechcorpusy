@@ -26,9 +26,10 @@ class LJ(AbstractCorpus):
     """Archive/contents handler of LJSpeech corpus.
 
     ItemID:
-        subcorpus: "default"
-        speaker: "lj_default"
-        name: f"LJ{N.zfill(3)}-{N.zfill(4)}"
+        corpus:    {self.__class__.__name__}
+        subcorpus: default
+        speaker:   lj_default
+        name:      LJ{N.zfill(3)}-{N.zfill(4)}
     """
 
     # Version and so on
@@ -83,14 +84,14 @@ class LJ(AbstractCorpus):
         (21, [13]), (27, [140]), (28, [135]), (34, [139]), (38, [195, 196]),
         (42, [34, 243]), (44, [46, 216]), (48, [108]), (49, [131])]
         for msg in missings:
-            group_info[msg[0]] = list(filter(lambda i: i not in msg[1], group_info[msg[0]]))
+            group_info[msg[0]] = list(filter(lambda i: i not in msg[1], group_info[msg[0]])) # pylint: disable = cell-var-from-loop
 
 
         ids: List[ItemId] = []
         for group in range(1,51):
             for num in group_info[group]:
                 name = f"LJ{str(group).zfill(3)}-{str(num).zfill(4)}"
-                ids.append(ItemId("default", "lj_default", name))
+                ids.append(ItemId(self.__class__.__name__, "default", "lj_default", name))
         return ids
 
     def get_item_path(self, item_id: ItemId) -> Path:

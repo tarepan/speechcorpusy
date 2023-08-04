@@ -15,9 +15,10 @@ class TEST(AbstractCorpus):
     For usage, you have to install `librosa` manually (not automatically installed by this package)
 
     ItemID:
-        subcorpus: "sub1" | "sub2"
-        speaker: "spk1" | "spk2"
-        name: "uttr1" | "uttr2"
+        corpus:    {self.__class__.__name__}
+        subcorpus: sub1 | sub2
+        speaker:   spk1 | spk2
+        name:      uttr1 | uttr2
     """
 
     # Version and so on
@@ -32,7 +33,7 @@ class TEST(AbstractCorpus):
         super().__init__(conf)
 
         # Special import (you need manual install)
-        from librosa.util import example # pyright: ignore [reportMissingImports] ; pylint: disable=import-outside-toplevel, import-error
+        from librosa.util import example # pyright: ignore [reportMissingImports] ; pylint: disable=import-outside-toplevel, import-error, no-name-in-module
         self._path_wav = Path(example("libri2"))
 
     def get_contents(self) -> None:
@@ -47,7 +48,7 @@ class TEST(AbstractCorpus):
         """
 
         return [
-            ItemId(subcorpus, speaker, name)
+            ItemId(self.__class__.__name__, subcorpus, speaker, name)
             for subcorpus in ["sub1", "sub2"]
             for speaker in ["spk1", "spk2"]
             for name in ["uttr1", "uttr2"]
