@@ -131,6 +131,7 @@ Currently, please check these values in each preset codes.
 |-----------------------------------|--------------|
 | LJSpeech                          | `LJ`         |
 | VCTK                              | `VCTK`       |
+| LibriTTS-R train-clean-100        | `LiTTSR100`  |
 | ZeroSpeech2019                    | `ZR19`       |
 | JUST                              | `JUST`       |
 | JVS                               | `JVS`        |
