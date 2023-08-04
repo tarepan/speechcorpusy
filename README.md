@@ -113,7 +113,7 @@ Once you understand helpers, you may be able to implement new handler within 15-
 
 ### Full API list
 All handlers  
-- `speechcorpusy.load_preset()`: Load specified presets
+- `speechcorpusy.load_preset()`: Load specified presets (f"{NAME1}&{NAME2}" load a merged corpus)
 - `speechcorpusy.presets`
   - LJSpeech/`LJ`, VCTK/`VCTK`, JVS/`JVS` and so on
 - [`speechcorpusy.interface.AbstractCorpus`](https://github.com/tarepan/speechcorpusy/blob/main/speechcorpusy/interface.py): the interface
