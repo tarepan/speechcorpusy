@@ -45,16 +45,17 @@ class AdHoc(AbstractCorpus):
     _archive_name: str = "not_exists.zip"
     _adress_origin: str = "not_exists"
 
-    def __init__(self, conf: ConfCorpus) -> None:
+    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
         self.conf = conf
+        variant = variant or self._variant
         _, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,
-            self._variant,
+            variant,
             self._archive_name,
         )
 

@@ -37,13 +37,14 @@ class LiTTSR100(AbstractCorpus):
     _archive_name: str = "train_clean_100.tar.gz"
     _adress_origin: str = "https://www.openslr.org/resources/141/train_clean_100.tar.gz"
 
-    def __init__(self, conf: ConfCorpus) -> None:
+    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
         self.conf = conf
-        self._adress_archive, self._path_contents = get_adress(conf.root, self.__class__.__name__, self._variant, self._archive_name)
+        variant = variant or self._variant
+        self._adress_archive, self._path_contents = get_adress(conf.root, self.__class__.__name__, variant, self._archive_name)
 
     def get_contents(self) -> None:
         """Get corpus contents into local.
