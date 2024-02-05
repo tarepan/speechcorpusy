@@ -5,7 +5,7 @@ from typing import List
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus, ItemId
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 from speechcorpusy.helper.contents import get_contents
 from speechcorpusy.helper.forward import forward
 
@@ -39,13 +39,13 @@ class LJ(AbstractCorpus):
     _archive_name: str = "LJSpeech-1.1.tar.bz2"
     _adress_origin: str = "https://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2"
 
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
         self.conf = conf
-        variant = variant or self._variant
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,

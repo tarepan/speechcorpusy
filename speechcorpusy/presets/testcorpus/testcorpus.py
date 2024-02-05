@@ -27,7 +27,7 @@ class TEST(AbstractCorpus):
     _archive_name: str = "<place-holder>"
     _adress_origin: str = "<place-holder>"
 
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without corpus contents acquisition.
         """
 

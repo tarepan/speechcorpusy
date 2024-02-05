@@ -4,7 +4,7 @@
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus, ItemId
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 from speechcorpusy.helper.contents import get_contents
 from speechcorpusy.helper.forward import forward
 from speechcorpusy.components.taudio import extract_archive
@@ -90,13 +90,13 @@ class VCTK(AbstractCorpus):
     _adress_origin: str = "https://datashare.ed.ac.uk/download/DS_10283_3443.zip"
     _inner_archive_name: str = "VCTK-Corpus-0.92.zip"
 
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
         self.conf = conf
-        variant = variant or self._variant
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,

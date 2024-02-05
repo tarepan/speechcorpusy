@@ -48,7 +48,7 @@ class AbstractCorpus(ABC):
     """
 
     @abstractmethod
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without contents download/extraction.
         """
 
@@ -147,11 +147,9 @@ class MergedCorpus(AbstractCorpus):
     """A corpus which is composed of multiple corpuses.
     """
 
-    def __init__(self, courpuses: list[AbstractCorpus], variant: str | None = None) -> None:
+    def __init__(self, courpuses: list[AbstractCorpus]) -> None:
         """Initialization without contents download/extraction.
         """
-        assert variant == None, "`MergedCorpus` do not accept the `variant` argument."
-
         self._corpuses = courpuses
 
     def get_corpuses(self) -> list[AbstractCorpus]:

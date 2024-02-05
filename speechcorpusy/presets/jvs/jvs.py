@@ -4,7 +4,7 @@ from typing import List, Tuple
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ItemId, ConfCorpus
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 from speechcorpusy.helper.contents import get_contents
 from speechcorpusy.helper.forward import forward_from_gdrive
 
@@ -41,12 +41,12 @@ class JVS(AbstractCorpus):
     # Google Drive item ID
     _origin_content_id: str = "19oAw8wWn3Y7z6CKChRdAyGOB9yupL_Xt"
 
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
-        variant = variant or self._variant
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         self.conf = conf
         self._adress_archive, self._path_contents = get_adress(
             conf.root,

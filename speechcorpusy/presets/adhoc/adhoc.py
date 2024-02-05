@@ -5,7 +5,7 @@ from typing import List
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus, ItemId
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 
 
 # AdHoc: A local directory which is recognized as a corpus ad hoc.
@@ -45,13 +45,13 @@ class AdHoc(AbstractCorpus):
     _archive_name: str = "not_exists.zip"
     _adress_origin: str = "not_exists"
 
-    def __init__(self, conf: ConfCorpus, variant: str | None = None) -> None:
+    def __init__(self, conf: ConfCorpus) -> None:
         """Initialization without corpus contents acquisition.
         """
 
         super().__init__(conf)
         self.conf = conf
-        variant = variant or self._variant
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         _, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,

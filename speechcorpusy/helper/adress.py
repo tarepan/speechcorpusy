@@ -38,3 +38,11 @@ def get_adress(
     archive_file = f"{archive_root}/{rel_corpus}/archive/{archive_name}"
     contents_dir = f"{contents_root}/{rel_corpus}/contents"
     return archive_file, Path(contents_dir)
+
+
+def extract_name_and_variant(name_andor_variant: str, default_variant: str) -> tuple[str, str]:
+    """Extract corpus name and variant specifier from `{name}[=={variant}]` string."""
+    corpus_name_and_var = name_andor_variant.split("==")
+    corpus_name = corpus_name_and_var[0]
+    corpus_variant = default_variant if len(corpus_name_and_var) == 1 else corpus_name_and_var[1]
+    return corpus_name, corpus_variant

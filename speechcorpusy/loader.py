@@ -5,6 +5,7 @@ from copy import deepcopy
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus
 from speechcorpusy import presets
+from speechcorpusy.helper.adress import extract_name_and_variant
 
 
 def load_preset(
@@ -16,7 +17,7 @@ def load_preset(
     """Load preset corpus.
 
     Args:
-        name: Preset corpus name ('Preset1&Preset2&...' results in merged corpus)
+        name: Preset corpus name ('Preset1&Preset2&...' results in merged corpus, `Preset1==ver1_0_0` results in preset variant)
         root: Adress of the directory under which the corpus archive is found or downloaded
         download: Whether to download original corpus if it is not found in `root`
         conf: (Advanced) Corpus configuration containing all other arguments
@@ -41,17 +42,18 @@ def load_preset(
     checked_conf = conf or ConfCorpus(name, root, download or False)
 
     corpuses: list[AbstractCorpus] = []
-    for corpus_name in checked_conf.name.split("&"):
+    for corpus_name_andor_var in checked_conf.name.split("&"):
         # Unit (non-merged) corpus' config
+        name, _ = extract_name_and_variant(corpus_name_andor_var, "")
         conf_i = deepcopy(checked_conf)
-        conf_i.name = corpus_name
+        conf_i.name = corpus_name_andor_var
 
         # Load corpus safely
-        if conf_i.name in presets.corpus_list:
-            corpus_cls: AbstractCorpus = getattr(presets, conf_i.name)
+        if name in presets.corpus_list:
+            corpus_cls: AbstractCorpus = getattr(presets, name)
             corpuses.append(corpus_cls(conf_i))
         else:
-            raise RuntimeError(f"Corpus '{conf_i.name}' is not supported by 'speechcurpusy'. Supported presets: {presets.corpus_list}")
+            raise RuntimeError(f"Corpus '{name}' is not supported by 'speechcurpusy'. Supported presets: {presets.corpus_list}")
 
     if len(corpuses) == 1:
         return corpuses[0]
