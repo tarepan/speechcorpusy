@@ -4,7 +4,7 @@
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ConfCorpus, ItemId
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 from speechcorpusy.helper.contents import get_contents
 from speechcorpusy.helper.forward import forward
 from speechcorpusy.components.taudio import extract_archive
@@ -96,10 +96,11 @@ class VCTK(AbstractCorpus):
 
         super().__init__(conf)
         self.conf = conf
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,
-            self._variant,
+            variant,
             self._archive_name,
         )
 

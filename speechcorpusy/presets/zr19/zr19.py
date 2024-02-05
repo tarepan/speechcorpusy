@@ -5,7 +5,7 @@ from typing import List
 from pathlib import Path
 
 from speechcorpusy.interface import AbstractCorpus, ItemId, ConfCorpus
-from speechcorpusy.helper.adress import get_adress
+from speechcorpusy.helper.adress import get_adress, extract_name_and_variant
 from speechcorpusy.helper.contents import get_contents
 from speechcorpusy.helper.forward import forward
 
@@ -81,10 +81,11 @@ class ZR19(AbstractCorpus):
 
         super().__init__(conf)
         self.conf = conf
+        _, variant = extract_name_and_variant(conf.name, self._variant)
         self._adress_archive, self._path_contents = get_adress(
             conf.root,
             self.__class__.__name__,
-            self._variant,
+            variant,
             self._archive_name,
         )
 
